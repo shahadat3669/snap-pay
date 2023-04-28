@@ -164,6 +164,26 @@ RSpec.describe CategoriesController, type: :controller do
           expect(assigns(:user)).to eq(user)
         end
       end
+
+      context 'with invalid attributes' do
+        let(:category_params) { { category: { name: '', icon: } } }
+
+        it 'does not create a new category' do
+          expect { post :create, params: category_params }.not_to change(Category, :count)
+        end
+
+        it 'renders the new template' do
+          post :create, params: category_params
+
+          expect(response).to render_template(:new)
+        end
+
+        it 'returns http success' do
+          post :create, params: category_params
+
+          expect(response).to have_http_status(:success)
+        end
+      end
     end
   end
 end
