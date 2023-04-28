@@ -35,4 +35,18 @@ RSpec.describe Payment, type: :model do
       expect(payment).to be_valid
     end
   end
+
+  describe 'associations' do
+    it 'belongs to an author' do
+      payment = Payment.new(name: 'Test Payment', amount: 10.0, author:)
+
+      expect(payment.author).to eql(author)
+    end
+
+    it 'has and belongs to many categories' do
+      payment = Payment.new(name: 'Test Payment', amount: 10.0, author:, categories: [category])
+
+      expect(payment.categories).to include(category)
+    end
+  end
 end
