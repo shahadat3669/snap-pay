@@ -42,4 +42,28 @@ RSpec.describe PaymentsController, type: :controller do
       end
     end
   end
+
+  describe 'POST #create' do
+    let(:author) { User.create(name: 'Shahadat Hossain', email: 'shahadat@example.com', password: '12345678') }
+    let(:category) { Category.create(name: 'Category 1', user: author) }
+
+    context 'when user is logged in' do
+      before { sign_in author }
+
+      context 'with valid attributes' do
+        let(:payment_param) { { payment: { name: 'Test Payment', amount: 100, category_ids: [category.id] } } }
+
+        it 'creates a new payment' do
+          expect { post :create, params: payment_param }
+            .to change(Payment, :count).by(1)
+        end
+
+        it 'redirects to the categories page' do
+          post :create, params: payment_param
+
+          expect(response).to redirect_to(categories_path)
+        end
+      end
+    end
+  end
 end
