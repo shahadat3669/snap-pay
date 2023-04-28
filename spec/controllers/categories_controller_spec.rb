@@ -185,5 +185,21 @@ RSpec.describe CategoriesController, type: :controller do
         end
       end
     end
+
+    describe 'when user is not logged in' do
+      let(:category_params) { { category: { name: 'Category 1', icon: } } }
+
+      it 'redirects to the sign in page' do
+        post :create, params: category_params
+
+        expect(response).to redirect_to(new_user_session_path)
+      end
+
+      it 'returns http redirect' do
+        post :create, params: category_params
+
+        expect(response).to have_http_status(:redirect)
+      end
+    end
   end
 end
