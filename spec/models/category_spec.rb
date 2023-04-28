@@ -30,4 +30,14 @@ RSpec.describe Category, type: :model do
       expect(category.user).to eql(user)
     end
   end
+
+  describe 'Active Storage attachments' do
+    it 'allows attachment of an icon' do
+      category = Category.create(name: 'Category 1', user:)
+      file = fixture_file_upload(Rails.root.join('app', 'assets', 'images', 'placeholder.png'), 'image/png')
+      category.icon.attach(file)
+
+      expect(category.icon).to be_attached
+    end
+  end
 end
