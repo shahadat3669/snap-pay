@@ -134,4 +134,36 @@ RSpec.describe CategoriesController, type: :controller do
       end
     end
   end
+
+  describe 'POST #create' do
+    describe 'when user is logged in' do
+      before { sign_in user }
+
+      context 'with valid attributes' do
+        let(:category_params) { { category: { name: 'Category 1', icon: } } }
+
+        it 'creates a new category' do
+          expect { post :create, params: category_params }.to change(Category, :count).by(1)
+        end
+
+        it 'redirects to the created category' do
+          post :create, params: category_params
+
+          expect(response).to redirect_to(Category.last)
+        end
+
+        it 'returns http redirect' do
+          post :create, params: category_params
+
+          expect(response).to have_http_status(:redirect)
+        end
+
+        it 'assigns current user' do
+          post :create, params: category_params
+
+          expect(assigns(:user)).to eq(user)
+        end
+      end
+    end
+  end
 end
