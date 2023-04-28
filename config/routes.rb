@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'payments#index'
+  root 'categories#index'
+  resources :categories
   resources :payments
 end
