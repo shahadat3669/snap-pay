@@ -22,4 +22,12 @@ RSpec.describe Category, type: :model do
       expect(category).to be_valid
     end
   end
+
+  describe 'associations' do
+    it 'belongs to an user' do
+      category = Category.create(name: 'Category 1', user:)
+
+      expect(category.user).to eql(user)
+    end
+  end
 end
