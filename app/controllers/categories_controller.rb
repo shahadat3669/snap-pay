@@ -11,4 +11,8 @@ class CategoriesController < ApplicationController
     @category = @user.categories.find(params[:id])
     @payments = @category.payments
   end
+
+  def new
+    @category = Category.new
+  end
 end
