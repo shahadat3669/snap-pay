@@ -64,6 +64,21 @@ RSpec.describe PaymentsController, type: :controller do
           expect(response).to redirect_to(categories_path)
         end
       end
+
+      context 'with invalid attributes' do
+        let(:payment_param) { { payment: { name: '', author_id: author.id, categories: [category.id] } } }
+
+        it 'does not create a new payment' do
+          expect { post :create, params: payment_param }
+            .not_to change(Payment, :count)
+        end
+
+        it 'renders the new template' do
+          post :create, params: payment_param
+
+          expect(response).to render_template(:new)
+        end
+      end
     end
   end
 end
