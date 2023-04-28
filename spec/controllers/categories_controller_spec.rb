@@ -96,4 +96,28 @@ RSpec.describe CategoriesController, type: :controller do
       end
     end
   end
+
+  describe 'GET #new' do
+    context 'when user is logged in' do
+      before { sign_in user }
+
+      it 'renders the new template' do
+        get :new
+
+        expect(response).to render_template(:new)
+      end
+
+      it 'assigns a new category' do
+        get :new
+
+        expect(assigns(:category)).to be_a_new(Category)
+      end
+
+      it 'returns http success' do
+        get :new
+
+        expect(response).to have_http_status(:success)
+      end
+    end
+  end
 end
