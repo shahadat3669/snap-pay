@@ -5,4 +5,10 @@ class CategoriesController < ApplicationController
     @user = current_user
     @categories = @user.categories
   end
+
+  def show
+    @user = current_user
+    @category = @user.categories.find(params[:id])
+    @payments = @category.payments
+  end
 end
