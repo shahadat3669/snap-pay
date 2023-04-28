@@ -80,5 +80,20 @@ RSpec.describe PaymentsController, type: :controller do
         end
       end
     end
+
+    context 'when user is not logged in' do
+      let(:payment_param) { { payment: { name: 'Test Payment', author_id: author.id, categories: [category.id] } } }
+
+      it 'redirects to the sign in page' do
+        post :create, params: payment_param
+
+        expect(response).to redirect_to(new_user_session_path)
+      end
+
+      it 'does not create a new payment' do
+        expect { post :create, params: payment_param }
+          .not_to change(Payment, :count)
+      end
+    end
   end
 end
