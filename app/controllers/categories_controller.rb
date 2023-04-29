@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
   def show
     @user = current_user
     @category = @user.categories.find(params[:id])
-    @payments = @category.payments
+    @payments = @category.payments.order(created_at: :desc)
   end
 
   def new
@@ -21,7 +21,7 @@ class CategoriesController < ApplicationController
     @category = @user.categories.new(category_params)
 
     if @category.save
-      redirect_to @category
+      redirect_to categories_path
     else
       render :new
     end

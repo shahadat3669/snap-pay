@@ -77,3 +77,41 @@
 .mt-6 {
   margin-top: 4rem !important;
 }
+
+.mb-6 {
+  margin-bottom: 6rem !important;
+}
+
+.file-input::-webkit-file-upload-button {
+  display: none;
+}
+
+.file-input::before {
+  content: 'Choose an icon file(png, jpeg)...';
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px;
+  border: 1px solid #f1f3f2;
+  border-radius: 0.25rem;
+}
+
+.font--bold {
+  font-weight: bold;
+  color: #434c55;
+}
+
+.gray {
+  color: #545c67;
+
+  &--dark {
+    color: #434c55;
+  }
+
+  &--light {
+    color: #86898e;
+  }
+
+  &--extra-light {
+    color: #989da3;
+  }
+}
