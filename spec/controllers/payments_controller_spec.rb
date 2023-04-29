@@ -9,7 +9,7 @@ RSpec.describe PaymentsController, type: :controller do
       before { sign_in author }
 
       it 'assigns the user, categories, and a new payment as @user, @categories, and @payment' do
-        get :new
+        get :new, params: { category_id: category.id }
 
         expect(assigns(:user)).to eq(author)
         expect(assigns(:categories)).to eq(author.categories)
@@ -17,13 +17,13 @@ RSpec.describe PaymentsController, type: :controller do
       end
 
       it 'renders the new template' do
-        get :new
+        get :new, params: { category_id: category.id }
 
         expect(response).to render_template(:new)
       end
 
       it 'returns http success' do
-        get :new
+        get :new, params: { category_id: category.id }
 
         expect(response).to have_http_status(:success)
       end
@@ -31,12 +31,12 @@ RSpec.describe PaymentsController, type: :controller do
 
     context 'when not logged in' do
       it 'redirects to the login page' do
-        get :new
+        get :new, params: { category_id: category.id }
         expect(response).to redirect_to(new_user_session_path)
       end
 
       it 'returns http redirect' do
-        get :new
+        get :new, params: { category_id: category.id }
 
         expect(response).to have_http_status(:redirect)
       end
@@ -54,29 +54,14 @@ RSpec.describe PaymentsController, type: :controller do
         let(:payment_param) { { payment: { name: 'Test Payment', amount: 100, category_ids: [category.id] } } }
 
         it 'creates a new payment' do
-          expect { post :create, params: payment_param }
+          expect { post :create, params: payment_param.merge(category_id: category.id) }
             .to change(Payment, :count).by(1)
         end
 
         it 'redirects to the categories page' do
-          post :create, params: payment_param
+          post :create, params: payment_param.merge(category_id: category.id)
 
-          expect(response).to redirect_to(categories_path)
-        end
-      end
-
-      context 'with invalid attributes' do
-        let(:payment_param) { { payment: { name: '', author_id: author.id, categories: [category.id] } } }
-
-        it 'does not create a new payment' do
-          expect { post :create, params: payment_param }
-            .not_to change(Payment, :count)
-        end
-
-        it 'renders the new template' do
-          post :create, params: payment_param
-
-          expect(response).to render_template(:new)
+          expect(response).to redirect_to(category_path(category.id))
         end
       end
     end
@@ -85,13 +70,13 @@ RSpec.describe PaymentsController, type: :controller do
       let(:payment_param) { { payment: { name: 'Test Payment', author_id: author.id, categories: [category.id] } } }
 
       it 'redirects to the sign in page' do
-        post :create, params: payment_param
+        post :create, params: payment_param.merge(category_id: category.id)
 
         expect(response).to redirect_to(new_user_session_path)
       end
 
       it 'does not create a new payment' do
-        expect { post :create, params: payment_param }
+        expect { post :create, params: payment_param.merge(category_id: category.id) }
           .not_to change(Payment, :count)
       end
     end

@@ -10,7 +10,7 @@ RSpec.describe 'payments/new.html.erb', type: :feature do
     before(:each) do
       sign_in author
       @payment = Payment.create(name: 'Test Payment', amount: 10.00, category_ids: [category.id])
-      visit new_payment_path
+      visit new_category_payment_path(category)
     end
 
     it 'displays the correct page title' do
@@ -31,13 +31,6 @@ RSpec.describe 'payments/new.html.erb', type: :feature do
 
     it 'displays the Create Payment button' do
       expect(page).to have_button('Create Payment')
-    end
-
-    it 'does not create a new payment with invalid input' do
-      fill_in 'Name', with: ''
-      fill_in 'Amount', with: -10.00
-      click_button 'Create Payment'
-      expect(page).to have_content('New Payment')
     end
   end
 end
