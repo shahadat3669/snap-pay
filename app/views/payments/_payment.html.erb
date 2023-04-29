@@ -1,0 +1,11 @@
+<div class='m-2 p-2 border d-flex justify-content-between bg-white' id="<%= dom_id payment %>">
+  <div class='d-flex gap-4 mx-2'>
+    <div class='d-flex flex-column justify-content-between gray'>
+      <h6 ><%= payment.name %></h6>
+      <span class='small'><%= payment.created_at.to_date %></span>
+    </div>
+  </div>
+  <div class='m-2 d-flex align-items-center' >
+    <strong class='text-center align-middle font--bold gray--dark' ><%= number_to_currency(payment.amount, precision: 2) %></strong>
+  </div>
+</div>
