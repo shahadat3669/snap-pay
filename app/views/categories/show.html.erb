@@ -1,5 +1,5 @@
 <div class="nav bg--primary d-flex justify-content-between align-items-center p-2 fixed-top">
-  <%= button_to root_path, method: :get, class: 'bg-transparent text-white m-0 border-0 text-decoration-none' do %>
+  <%= button_to categories_path, method: :get, class: 'bg-transparent text-white m-0 border-0 text-decoration-none' do %>
     <i class="bi bi-list"></i>
   <% end %>
   <h5 class='text-white m-0 py-2 text-uppercase font-weight-bold'><%= @category.name %></h5>
@@ -18,6 +18,6 @@
 </div>
 <div class="bg-second d-flex justify-content-center fixed-bottom">
   <div class="custom-btn__wrapper custom-btn__wrapper--secondary">
-    <%= button_to "NEW Payment", new_payment_path, method: :get, class: 'custom-btn custom-btn--secondary text-uppercase' %>
+    <%= button_to "NEW Payment", new_category_payment_path(@category), method: :get, class: 'custom-btn custom-btn--secondary text-uppercase' %>
   </div>
 </div>
