@@ -1,0 +1,15 @@
+<div class='m-2 p-2 border d-flex justify-content-between bg-white' id="<%= dom_id category %>">
+  <div class='d-flex gap-4 mx-2'>
+    <% if category.present? %>
+      <%= image_tag category.icon, :style => 'width: 64px; height: 64px; object-fit: cover;' %>
+    <% end %>
+    <div class='text-4 d-flex flex-column justify-content-between'>
+      <%= category.name %>
+      <br>
+      <span class='small'><%= category.created_at.to_date %></span>
+    </div>
+  </div>
+  <div class='m-2 d-flex align-items-center' >
+    <strong class='text-center align-middle' ><%= number_to_currency(category.value, precision: 2) %></strong>
+  </div>
+</div>
