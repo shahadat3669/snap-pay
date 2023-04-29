@@ -66,7 +66,7 @@ RSpec.describe CategoriesController, type: :controller do
 
       it 'assigns the category payments as @payments' do
         get :show, params: { id: category.id }
-        puts "payment1 #{payment1.attributes}"
+
         expect(assigns(:payments)).to match_array([payment1, payment2])
       end
 
