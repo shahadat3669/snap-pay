@@ -22,5 +22,11 @@ RSpec.feature 'Categories', type: :feature do
     it 'displays the Create category button' do
       expect(page).to have_button('Create Category')
     end
+
+    it 'should redirect to categories index page when clicked' do
+      find("form[action='/categories'] button").click
+
+      expect(current_path).to eq(categories_path)
+    end
   end
 end
