@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
+  get 'splash/index'
 
-  root 'categories#index'
-  resources :categories
-  resources :payments
+  devise_for :users
+  root 'splash#index'
+
+  get '/user' => "categories#index", :as => :user_root
+
+  resources :categories ,only: [:index, :show, :new, :create] do
+    resources :payments, only: [:new, :create]
+  end
 end
