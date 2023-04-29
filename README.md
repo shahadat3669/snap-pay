@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
 
 <div align="center">
-  <img src="./app/assets/images/logo.svg" alt="logo" width="140"  height="auto" />
+  <img src="./app/assets/images/cover.png" alt="SnapPay" width="100%"  height="auto" />
 </div>
 
 # 📗 Table of Contents
@@ -76,9 +76,9 @@ Main functionalities which the app will have:
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-<!-- - [Live Demo Link]() -->
-
-Sorry, Currently no active link available.
+- [Live Demo Link](https://snap-pay.onrender.com)
+- [Presentation video](https://drive.google.com/file/d/1bJaj2GTkXzuOpU93F1yjW8HnDHlBq_a1/view?usp=sharing)
+- [Presentation pdf](presentation.pdf)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -208,6 +208,7 @@ Give a ⭐️ if you like this project!
 - My Family.
 - [Microverse](microverse.org)
 - [Gregoire Vella](https://www.behance.net/gregoirevella) for [Snapscan - iOs design and branding](https://www.behance.net/gallery/19759151/Snapscan-iOs-design-and-branding)
+- [OnlineWebFonts](http://www.onlinewebfonts.com) for fonts
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FAQ (optional) -->
