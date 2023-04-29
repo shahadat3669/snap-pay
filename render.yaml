@@ -1,0 +1,18 @@
+databases:
+  - name: snap-pay-database
+    databaseName: snap_pay_database
+    user: snap_pay_database_user
+
+services:
+  - type: web
+    name: snap-pay
+    env: ruby
+    buildCommand: './bin/render-build.sh'
+    startCommand: 'bundle exec puma -C config/puma.rb'
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: snap_pay_database
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
