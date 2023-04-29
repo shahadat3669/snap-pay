@@ -74,8 +74,12 @@ Main functionalities which the app will have:
 
 <!-- LIVE DEMO -->
 
-## 🚀 Live Demo <a name="live-demo"></a>
 
+
+
+
+## 🚀 Live Demo <a name="live-demo"></a>
+https://user-images.githubusercontent.com/55840999/235326674-2f3843be-b0df-40bb-a9bf-d3fbb254df25.mp4
 - [Live Demo Link](https://snap-pay.onrender.com)
 - [Presentation video](https://drive.google.com/file/d/1bJaj2GTkXzuOpU93F1yjW8HnDHlBq_a1/view?usp=sharing)
 - [Presentation pdf](presentation.pdf)
