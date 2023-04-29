@@ -1,2 +1,46 @@
-<h1>Payments#new</h1>
-<p>Find me in app/views/payments/new.html.erb</p>
+<div class="nav bg--primary d-flex justify-content-between align-items-center p-2  fixed-top">
+  <%= button_to root_path, method: :get, class: 'bg-transparent text-white m-0 border-0 text-decoration-none' do %>
+    <i class="bi bi-list"></i>
+  <% end %>
+  <h5 class='text-white m-0 py-2 text-uppercase font-weight-bold'>New Payment</h5>
+  <%= button_to request.referrer, method: :get, class: 'bg-transparent text-white m-0 border-0 text-decoration-none' do %>
+    <i class="bi bi-search"></i>
+  <% end %>
+</div>
+<%= form_with(model: @payment, local: true, html: { class: "mt-6 mx-2 d-flex flex-column gap-1" }) do |form| %>
+  <div class="p-2 bg-white">
+    <%= form.text_field :name, class: 'form-control rounded-0 border-0', placeholder: "#{:name}".capitalize %>
+    <% if @payment.errors.has_key?(:name) %>
+      <p class="text-danger"><%= @payment.errors[:name].join(', ') %></p>
+    <% end %>
+  </div>
+  <div class="p-2 bg-white">
+    <%= form.text_field :amount, class: 'form-control rounded-0 border-0', placeholder: "#{:amount}".capitalize %>
+    <% if @payment.errors[:amount].any? %>
+      <div class="text-danger">
+        <%= @payment.errors[:amount].join(", ") %>
+      </div>
+    <% end %>
+  </div>
+  <div class="p-2 bg-white">
+    <%= form.label :category_ids, 'Categories' , class:"mb-2" %>
+    <br>
+    <%= form.collection_check_boxes(:category_ids, @categories, :id, :name) do |category| %>
+      <div class="form-check">
+        <%= category.check_box(class: "form-check-input", id: dom_id(category.object)) %>
+        <%= category.label(class: "form-check-label", for: dom_id(category.object)) do %>
+          <%= category.text %>
+        <% end %>
+      </div>
+    <% end %>
+    <% if @payment.errors[:category_ids].any? %>
+      <div class="text-danger">
+        <%= @payment.errors[:category_ids].join(", ") %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="custom-btn__wrapper custom-btn__wrapper--secondary fixed-bottom">
+  <%= form.submit class: 'custom-btn custom-btn--secondary' %>
+</div>
+<% end %>
