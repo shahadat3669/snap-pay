@@ -77,3 +77,16 @@
 .mt-6 {
   margin-top: 4rem !important;
 }
+
+.file-input::-webkit-file-upload-button {
+  display: none;
+}
+
+.file-input::before {
+  content: 'Choose an icon file(png, jpeg)...';
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px;
+  border: 1px solid #f1f3f2;
+  border-radius: 0.25rem;
+}
